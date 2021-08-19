@@ -9,7 +9,7 @@ const polybiusModule = (function () {
 		f: 12,
 		g: 22,
 		h: 32,
-		"i/j": 42,
+		"(i/j)": 42,
 		k: 52,
 		l: 13,
 		m: 23,
@@ -29,11 +29,14 @@ const polybiusModule = (function () {
 		" ": 00,
 	};
 	function polybius(input, encode = true) {
+		if (!input || typeof input !== "string") return false;
+
 		let code = "";
 		if (encode) {
+			input = input.toLowerCase();
 			for (let i = 0; i < input.length; i++) {
 				if (input[i].includes("i") || input[i].includes("j")) {
-					code += cipher["i/j"];
+					code += cipher["(i/j)"];
 				} else if (input[i] === " ") {
 					code += input[i];
 				} else {
